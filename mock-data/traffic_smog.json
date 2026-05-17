@@ -1,0 +1,72 @@
+{
+    "scenario": "Smog Crisis",
+    "timestamp": "2026-11-12T07:00:00",
+    "source": "Lahore Traffic Engineering Bureau",
+    "overall_city_congestion_index": 0.78,
+    "zones": [
+      {
+        "zone_id": "Z04",
+        "zone_name": "DHA / Cantt",
+        "status": "CRITICAL",
+        "congestion_ratio": 0.84,
+        "avg_speed_kmh": 14,
+        "normal_avg_speed_kmh": 60,
+        "visibility_km": 0.28,
+        "accident_count_last_2h": 3,
+        "roads": [
+          {
+            "road": "Shahrah-e-Faisal",
+            "status": "SEVERELY_CONGESTED",
+            "congestion_ratio": 0.86,
+            "avg_speed_kmh": 12,
+            "incident": "Multi-vehicle collision at DHA Phase 4 — 3 vehicles involved"
+          },
+          {
+            "road": "Main Boulevard DHA",
+            "status": "SLOW",
+            "congestion_ratio": 0.77,
+            "avg_speed_kmh": 18,
+            "incident": "Reduced speed advisory — hazardous smog"
+          }
+        ]
+      },
+      {
+        "zone_id": "Z05",
+        "zone_name": "Ferozpur Road Corridor",
+        "status": "CRITICAL",
+        "congestion_ratio": 0.81,
+        "avg_speed_kmh": 10,
+        "normal_avg_speed_kmh": 55,
+        "visibility_km": 0.22,
+        "accident_count_last_2h": 2,
+        "roads": [
+          {
+            "road": "Ferozpur Road",
+            "status": "SEVERELY_CONGESTED",
+            "congestion_ratio": 0.83,
+            "avg_speed_kmh": 9,
+            "incident": "Truck collision near toll plaza — road partially blocked"
+          }
+        ]
+      }
+    ],
+    "thresholds_exceeded": {
+      "congestion_threshold": 0.75,
+      "z04_congestion": 0.84,
+      "z05_congestion": 0.81,
+      "threshold_exceeded": true,
+      "accident_keywords_detected": true
+    },
+    "before_state": {
+      "avg_speed_kmh": 12,
+      "accident_count": 5,
+      "visibility_km": 0.25,
+      "congestion_ratio": 0.83
+    },
+    "projected_after_state": {
+      "avg_speed_kmh": 28,
+      "road_closures_enforced": true,
+      "alternate_routes_active": true,
+      "estimated_improvement_minutes": 30
+    }
+  }

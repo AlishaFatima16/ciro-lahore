@@ -1,0 +1,38 @@
+{
+    "scenario": "Smog Crisis",
+    "timestamp": "2026-11-12T07:00:00",
+    "source": "Pakistan Meteorological Department — Lahore Station",
+    "readings": {
+      "rainfall_mm": 0,
+      "temperature_c": 14,
+      "humidity_percent": 89,
+      "wind_speed_kmh": 3,
+      "visibility_km": 0.3,
+      "aqi": 387,
+      "aqi_category": "HAZARDOUS",
+      "pm2_5_ugm3": 312,
+      "pm10_ugm3": 487,
+      "cloud_cover_percent": 70
+    },
+    "alerts": [
+      {
+        "type": "SMOG_EMERGENCY_ALERT",
+        "severity": "RED",
+        "message": "Hazardous smog conditions. AQI 387. Visibility below 300m. Avoid all non-essential travel.",
+        "affected_zones": ["Z04", "Z05", "Z06", "Z08"]
+      },
+      {
+        "type": "HEALTH_EMERGENCY",
+        "severity": "CRITICAL",
+        "message": "PM2.5 is 20x WHO safe limit. Respiratory patients and children must stay indoors.",
+        "affected_population_estimate": 340000
+      }
+    ],
+    "thresholds_exceeded": {
+      "aqi_threshold": 300,
+      "actual_aqi": 387,
+      "visibility_threshold_km": 0.5,
+      "actual_visibility_km": 0.3,
+      "both_thresholds_exceeded": true
+    }
+  }
