@@ -1,0 +1,22 @@
+{
+  "flood": {
+    "rainfall_mm": 50,
+    "congestion_ratio": 0.80,
+    "min_keyword_matches": 1
+  },
+  "smog": {
+    "aqi": 300,
+    "visibility_km": 0.5,
+    "min_keyword_matches": 1
+  },
+  "accident": {
+    "congestion_ratio": 0.75,
+    "min_keyword_matches": 1
+  },
+  "confidence": {
+    "halt_threshold": 70,
+    "keyword_weight": 25,
+    "telemetry_weight": 50,
+    "base_score": 25
+  }
+}
