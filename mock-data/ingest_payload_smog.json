@@ -1,0 +1,26 @@
+{
+    "social_signals": [
+      "DHA pe itna smog hai ke haath bhi nazar nahi aa raha. Aankhein jal rahi hain.",
+      "Zero visibility on Ferozpur Road. Multiple near-misses already this morning. Extremely dangerous.",
+      "Shahrah-e-Faisal pe accident ho gaya smog ki wajah se. 3 gaariyan takra gayi hain.",
+      "Thokar Niaz Baig pe visibility bilkul zero hai. Headlights bhi kaam nahi kar rahi. Ghar pe raho please.",
+      "AQI reading 387 at DHA Y-block. This is hazardous. Schools must close immediately.",
+      "Ferozpur Road pe lorry ka accident ho gaya. Visibility nahi thi. Ek banda zakhmi hai.",
+      "Worst smog episode of the year. Main Boulevard DHA looks like a ghost road. Visibility under 50 meters.",
+      "Bachon ko school mat bhejo aaj. Ferozpur Road pe saans lena mushkil ho raha hai. Smog bohat zyada hai.",
+      "Cantt area completely covered in smog blanket. Airport Road also affected.",
+      "Meri maa ko asthma attack aa gaya smog ki wajah se. Hospital le ja raha hun.",
+      "Traffic moving at crawl pace on Shahrah-e-Faisal. Accident risk very high. Fog lamps must.",
+      "Ferozpur Road toll plaza ke paas 5 gaariyan ek saath takra gayi. RESCUE 1122 bulao jaldi."
+    ],
+    "weather": {
+      "rainfall_mm": 0,
+      "aqi": 387,
+      "visibility_km": 0.3
+    },
+    "traffic": {
+      "congestion_ratio": 0.83,
+      "avg_speed_kmh": 10
+    },
+    "timestamp": "2026-11-12T07:48:00"
+  }
