@@ -1,0 +1,82 @@
+{
+    "scenario": "Urban Flooding",
+    "timestamp": "2026-07-18T08:00:00",
+    "source": "Lahore Traffic Engineering Bureau",
+    "overall_city_congestion_index": 0.91,
+    "zones": [
+      {
+        "zone_id": "Z02",
+        "zone_name": "Liberty / Gulberg",
+        "status": "CRITICAL",
+        "congestion_ratio": 0.94,
+        "avg_speed_kmh": 3,
+        "normal_avg_speed_kmh": 42,
+        "roads": [
+          {
+            "road": "Canal Road",
+            "status": "CLOSED",
+            "congestion_ratio": 0.98,
+            "avg_speed_kmh": 1,
+            "incident": "Flash flooding — road impassable"
+          },
+          {
+            "road": "Liberty Underpass",
+            "status": "CLOSED",
+            "congestion_ratio": 1.0,
+            "avg_speed_kmh": 0,
+            "incident": "Submerged — vehicle entrapment risk",
+            "stranded_vehicles": 12
+          },
+          {
+            "road": "MM Alam Road",
+            "status": "SEVERELY_CONGESTED",
+            "congestion_ratio": 0.91,
+            "avg_speed_kmh": 4,
+            "incident": "Overflow from Canal Road diversion"
+          }
+        ]
+      },
+      {
+        "zone_id": "Z03",
+        "zone_name": "Model Town / Garden Town",
+        "status": "CONGESTED",
+        "congestion_ratio": 0.72,
+        "avg_speed_kmh": 11,
+        "roads": [
+          {
+            "road": "Jail Road",
+            "status": "CONGESTED",
+            "congestion_ratio": 0.73,
+            "avg_speed_kmh": 10,
+            "incident": "High diversion traffic from Canal Road"
+          }
+        ]
+      }
+    ],
+    "alternate_routes_available": [
+      {
+        "from": "Canal Road / Liberty Chowk",
+        "to": "Gulberg",
+        "via": "Jail Road → Kalma Chowk",
+        "estimated_time_minutes": 22,
+        "status": "RECOMMENDED"
+      }
+    ],
+    "thresholds_exceeded": {
+      "congestion_threshold": 0.80,
+      "actual_z02_congestion": 0.94,
+      "threshold_exceeded": true
+    },
+    "before_state": {
+      "liberty_congestion_percent": 94,
+      "avg_speed_kmh": 3,
+      "stalled_vehicles": 847,
+      "closed_roads": ["Canal Road", "Liberty Underpass"]
+    },
+    "projected_after_state": {
+      "liberty_congestion_percent": 38,
+      "avg_speed_kmh": 18,
+      "estimated_clearance_minutes": 25,
+      "via_jail_road_reroute": true
+    }
+  }
