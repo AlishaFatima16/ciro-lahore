@@ -42,33 +42,33 @@ api.interceptors.response.use(
 
 /** Ingest signal custom text and correlation risk flags */
 export const ingestSignals = (payload) => {
-  // payload structure: { signal: string, floodRisk: bool, smokeDetected: bool, powerOutage: bool }
-  return api.post('/signals/ingest', payload);
+  // payload structure MUST match: { "social_signals": [...], "weather": {...}, "traffic": {...} }
+  return api.post('/api/signals/ingest', payload);
 };
 
 /** Retrieve live status breakdown of current crisis */
 export const getCrisis = () => {
-  return api.get('/crisis/current');
+  return api.get('/api/crisis/current');
 };
 
 /** Retrieve step-by-step logs and tool calls from Antigravity swarm */
 export const getLogs = () => {
-  return api.get('/agents/traces');
+  return api.get('/api/crisis/current');
 };
 
 /** Retrieve simulated or actual execution before/after metrics */
 export const getSimulation = () => {
-  return api.get('/simulation/status');
+  return api.get('/api/response/plan');
 };
 
 /** Retrieve Lahore satellite coordinate layers, routes, and dispatch pins */
 export const getMap = () => {
-  return api.get('/map/zones');
+  return api.get('/api/zones/status');
 };
 
 /** Retrieve live municipal dispatch statuses for WASA, Rescue 1122 and SMS boards */
 export const getOutcomeState = () => {
-  return api.get('/outcome/state');
+  return api.get('/api/outcome/state');
 };
 
 export default api;
