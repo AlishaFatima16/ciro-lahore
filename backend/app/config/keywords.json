@@ -1,0 +1,17 @@
+{
+  "flood": [
+    "saib", "barish", "paani", "paani aa gaya", "sailab", "tayfan", "baarish", "darya", "gehri barish",
+    "rasta band", "flood", "flooding", "waterlogged", "inundation", "overflow", "drain overflow",
+    "rain water", "heavy rain", "standing water", "water logging", "nullah overflow"
+  ],
+  "smog": [
+    "dhuan", "dhuaan", "kala dhuan", "aankhen jalti hain", "saans nahi aa rahi", "visibility nahi",
+    "smog", "haze", "fog", "air pollution", "smoke", "visibility low", "bad air", "poor air quality",
+    "aqi high", "breathing difficulty", "respiratory", "toxic air"
+  ],
+  "accident": [
+    "hadsa", "takkar", "gaari takra gayi", "accident ho gaya", "zakhmi", "ambulance bulao",
+    "accident", "crash", "collision", "vehicle accident", "road accident", "car crash",
+    "truck accident", "motorcycle accident", "injured", "fatality", "pile up", "road block"
+  ]
+}

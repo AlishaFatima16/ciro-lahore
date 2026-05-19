@@ -1,0 +1,38 @@
+{
+  "flood": {
+    "departments": ["WASA", "Traffic Police", "RESCUE 1122"],
+    "actions": [
+      "Deploy WASA drainage pumping teams immediately",
+      "Activate emergency traffic rerouting on flooded corridors",
+      "Deploy RESCUE 1122 swift water rescue units",
+      "Issue public flood advisory via SMS broadcast",
+      "Coordinate with PDMA for relief resource staging"
+    ],
+    "rerouting": true,
+    "public_alert": true
+  },
+  "smog": {
+    "departments": ["EPA Punjab", "Health Department", "Traffic Police"],
+    "actions": [
+      "Activate EPA Punjab industrial emission monitoring teams",
+      "Issue public health advisory for respiratory patients",
+      "Enforce odd-even vehicle restriction on arterial roads",
+      "Deploy Health Department mobile medical camps in affected zones",
+      "Coordinate with PHA for tree plantation emergency drive"
+    ],
+    "rerouting": false,
+    "public_alert": true
+  },
+  "accident": {
+    "departments": ["RESCUE 1122", "Traffic Police"],
+    "actions": [
+      "Dispatch RESCUE 1122 medical response units",
+      "Deploy Traffic Police for accident site management",
+      "Activate emergency rerouting around accident zone",
+      "Broadcast public advisory to avoid affected roads",
+      "Coordinate with Punjab Emergency Service for ambulance dispatch"
+    ],
+    "rerouting": true,
+    "public_alert": true
+  }
+}

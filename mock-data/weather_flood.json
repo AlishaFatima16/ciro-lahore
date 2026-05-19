@@ -1,0 +1,41 @@
+{
+    "scenario": "Urban Flooding",
+    "timestamp": "2026-07-18T08:00:00",
+    "source": "Pakistan Meteorological Department — Lahore Station",
+    "readings": {
+      "rainfall_mm": 94,
+      "rainfall_duration_hours": 3.5,
+      "rainfall_intensity": "Extreme — monsoon cloudburst",
+      "temperature_c": 29,
+      "humidity_percent": 98,
+      "wind_speed_kmh": 22,
+      "visibility_km": 1.2,
+      "aqi": 78,
+      "cloud_cover_percent": 100
+    },
+    "alerts": [
+      {
+        "type": "FLASH_FLOOD_WARNING",
+        "severity": "RED",
+        "message": "Extreme rainfall exceeding drainage capacity. Flash flooding expected in Z01, Z02, Z03.",
+        "affected_zones": ["Z01", "Z02", "Z03"]
+      },
+      {
+        "type": "URBAN_FLOOD_ADVISORY",
+        "severity": "CRITICAL",
+        "message": "Liberty Chowk and Canal Road underpasses at maximum flood risk.",
+        "affected_zones": ["Z02"]
+      }
+    ],
+    "drain_capacity_status": {
+      "liberty_chowk_drain": "OVERFLOW",
+      "canal_road_drain": "OVERFLOW",
+      "gulberg_drain": "CRITICAL",
+      "overall_lahore_drain_load_percent": 134
+    },
+    "thresholds_exceeded": {
+      "rainfall_threshold_mm": 50,
+      "actual_mm": 94,
+      "threshold_exceeded": true
+    }
+  }

@@ -1,0 +1,77 @@
+{
+  "zones": {
+    "Z01": {
+      "name": "Gulberg",
+      "roads": ["Main Boulevard", "MM Alam Road", "Liberty Roundabout", "Jail Road"],
+      "population": 180000,
+      "keywords": ["gulberg", "liberty", "mm alam", "jail road", "main boulevard"]
+    },
+    "Z02": {
+      "name": "DHA",
+      "roads": ["Khayaban-e-Iqbal", "Khayaban-e-Jinnah", "DHA Phase 5 Commercial", "Bedian Road"],
+      "population": 220000,
+      "keywords": ["dha", "defence", "khayaban", "bedian road", "phase 5", "phase 6"]
+    },
+    "Z03": {
+      "name": "Model Town",
+      "roads": ["Model Town Link Road", "Wahdat Road", "Canal Road"],
+      "population": 150000,
+      "keywords": ["model town", "wahdat road", "canal road", "park road"]
+    },
+    "Z04": {
+      "name": "Johar Town",
+      "roads": ["Ferozepur Road", "Johar Town Boulevard", "Expo Avenue"],
+      "population": 200000,
+      "keywords": ["johar town", "expo", "ferozepur road", "johar boulevard"]
+    },
+    "Z05": {
+      "name": "Walled City / Old Lahore",
+      "roads": ["Circular Road", "Lohari Gate", "Delhi Gate", "Bhati Gate", "Anarkali"],
+      "population": 300000,
+      "keywords": ["walled city", "anarkali", "circular road", "lohari", "delhi gate", "bhati gate", "old lahore"]
+    },
+    "Z06": {
+      "name": "Cantonment",
+      "roads": ["Sarwar Road", "Mall Road", "Empress Road", "Abid Majeed Road"],
+      "population": 130000,
+      "keywords": ["cantonment", "cantt", "sarwar road", "empress road", "mall road"]
+    },
+    "Z07": {
+      "name": "Raiwind / Kahna",
+      "roads": ["Raiwind Road", "Kahna Road", "Ring Road South"],
+      "population": 160000,
+      "keywords": ["raiwind", "kahna", "ring road south", "raiwind road"]
+    },
+    "Z08": {
+      "name": "Shahdara / GT Road North",
+      "roads": ["GT Road", "Shahdara Road", "Lahore Ring Road North"],
+      "population": 210000,
+      "keywords": ["shahdara", "gt road", "ring road north", "lahore ring road"]
+    },
+    "Z09": {
+      "name": "Allama Iqbal Town",
+      "roads": ["Multan Road", "Thokar Niaz Baig", "Barki Road"],
+      "population": 175000,
+      "keywords": ["iqbal town", "multan road", "thokar", "barki road"]
+    },
+    "Z10": {
+      "name": "Township / Sundar",
+      "roads": ["Sunder Road", "Township Ferozpur Rd", "Nishtar Colony Road"],
+      "population": 140000,
+      "keywords": ["township", "sundar", "nishtar colony", "sunder road"]
+    },
+    "Z11": {
+      "name": "Bahria Town",
+      "roads": ["Bahria Town Main Boulevard", "Spine Road", "Raiwind-Bahria Road"],
+      "population": 250000,
+      "keywords": ["bahria", "bahria town", "spine road"]
+    },
+    "Z12": {
+      "name": "Sheikhupura / Lahore Outskirts",
+      "roads": ["Sheikhupura Road", "Lahore Bypass", "N-5 Highway"],
+      "population": 120000,
+      "keywords": ["sheikhupura", "lahore bypass", "n-5", "highway"]
+    }
+  },
+  "default_zone": "Z01"
+}

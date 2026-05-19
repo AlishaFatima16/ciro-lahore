@@ -1,0 +1,129 @@
+[
+    {
+      "id": "SS-S-001",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:15:00",
+      "zone": "Z04",
+      "text": "DHA pe itna smog hai ke haath bhi nazar nahi aa raha. Aankhein jal rahi hain.",
+      "translated": "DHA has so much smog you can't see your hand. Eyes are burning.",
+      "keywords": ["DHA", "smog", "aankhein", "jal"]
+    },
+    {
+      "id": "SS-S-002",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "English",
+      "timestamp": "2026-11-12T07:18:00",
+      "zone": "Z05",
+      "text": "Zero visibility on Ferozpur Road. Multiple near-misses already this morning. Extremely dangerous.",
+      "keywords": ["zero visibility", "Ferozpur Road", "dangerous"]
+    },
+    {
+      "id": "SS-S-003",
+      "scenario": "Smog Crisis",
+      "source": "Facebook",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:21:00",
+      "zone": "Z04",
+      "text": "Shahrah-e-Faisal pe accident ho gaya smog ki wajah se. 3 gaariyan takra gayi hain.",
+      "translated": "Accident on Shahrah-e-Faisal due to smog. 3 cars have collided.",
+      "keywords": ["Shahrah-e-Faisal", "accident", "smog", "takra"]
+    },
+    {
+      "id": "SS-S-004",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:24:00",
+      "zone": "Z05",
+      "text": "Thokar Niaz Baig pe visibility bilkul zero hai. Headlights bhi kaam nahi kar rahi. Ghar pe raho please.",
+      "translated": "Visibility at Thokar Niaz Baig is absolute zero. Headlights not working. Please stay home.",
+      "keywords": ["Thokar Niaz Baig", "visibility", "zero", "smog"]
+    },
+    {
+      "id": "SS-S-005",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "English",
+      "timestamp": "2026-11-12T07:27:00",
+      "zone": "Z04",
+      "text": "AQI reading 387 at DHA Y-block. This is hazardous. Schools must close immediately.",
+      "keywords": ["AQI", "DHA", "hazardous", "schools"]
+    },
+    {
+      "id": "SS-S-006",
+      "scenario": "Smog Crisis",
+      "source": "WhatsApp Public Group",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:30:00",
+      "zone": "Z05",
+      "text": "Ferozpur Road pe lorry ka accident ho gaya. Visibility nahi thi. Ek banda zakhmi hai.",
+      "translated": "Truck accident on Ferozpur Road due to no visibility. One person injured.",
+      "keywords": ["Ferozpur Road", "lorry", "accident", "visibility", "zakhmi"]
+    },
+    {
+      "id": "SS-S-007",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "English",
+      "timestamp": "2026-11-12T07:33:00",
+      "zone": "Z04",
+      "text": "Worst smog episode of the year. Main Boulevard DHA looks like a ghost road. Visibility under 50 meters.",
+      "keywords": ["smog", "Main Boulevard DHA", "visibility", "50 meters"]
+    },
+    {
+      "id": "SS-S-008",
+      "scenario": "Smog Crisis",
+      "source": "Facebook",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:36:00",
+      "zone": "Z05",
+      "text": "Bachon ko school mat bhejo aaj. Ferozpur Road pe saans lena mushkil ho raha hai. Smog bohat zyada hai.",
+      "translated": "Don't send kids to school today. Hard to breathe on Ferozpur Road. Smog is very heavy.",
+      "keywords": ["Ferozpur Road", "saans", "mushkil", "smog"]
+    },
+    {
+      "id": "SS-S-009",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "English",
+      "timestamp": "2026-11-12T07:39:00",
+      "zone": "Z04",
+      "text": "Cantt area completely covered in smog blanket. Airport Road also affected. Flights may be delayed.",
+      "keywords": ["Cantt", "smog", "Airport Road", "flights delayed"]
+    },
+    {
+      "id": "SS-S-010",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:42:00",
+      "zone": "Z05",
+      "text": "Meri maa ko asthma attack aa gaya smog ki wajah se. Hospital le ja raha hun. Koi ambulance help kare.",
+      "translated": "My mother got an asthma attack due to smog. Taking her to hospital. Someone please help with ambulance.",
+      "keywords": ["asthma", "smog", "hospital", "ambulance"]
+    },
+    {
+      "id": "SS-S-011",
+      "scenario": "Smog Crisis",
+      "source": "Facebook",
+      "language": "English",
+      "timestamp": "2026-11-12T07:45:00",
+      "zone": "Z04",
+      "text": "Traffic moving at crawl pace on Shahrah-e-Faisal. Fog lamps mandatory but many cars don't have them. Accident risk very high.",
+      "keywords": ["Shahrah-e-Faisal", "traffic", "fog lamps", "accident risk"]
+    },
+    {
+      "id": "SS-S-012",
+      "scenario": "Smog Crisis",
+      "source": "Twitter",
+      "language": "Roman Urdu",
+      "timestamp": "2026-11-12T07:48:00",
+      "zone": "Z05",
+      "text": "Ferozpur Road toll plaza ke paas 5 gaariyan ek saath takra gayi. RESCUE 1122 bulao jaldi.",
+      "translated": "5 cars collided near Ferozpur Road toll plaza. Call RESCUE 1122 quickly.",
+      "keywords": ["Ferozpur Road", "takra", "RESCUE 1122"]
+    }
+  ]

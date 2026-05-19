@@ -1,0 +1,27 @@
+{
+    "social_signals": [
+      "Liberty Chowk pe pani bhar gaya, gaariyan phans gayi hain. Koi solution nahi?",
+      "Canal Road bilkul band ho gaya hai, knee-deep pani hai. WASA kahan hai?",
+      "Major flooding at Liberty underpass. At least 12 vehicles stranded. RESCUE 1122 needed urgently.",
+      "MM Alam Road pe bhi paani aa gaya. Gulberg me traffic completely jam hai. Bachao!",
+      "Liberty underpass mein gaari doob gayi. Please Canal Road avoid karo.",
+      "Worst flooding I have seen at Liberty Chowk. Roads are rivers. Use Jail Road alternate route!",
+      "Gulberg main drain overflow ho gaya. Dukanen bhi doob rahi hain. Khuda ka waasta WASA ko bhejo.",
+      "WASA drainage completely overwhelmed at Liberty. Second hour of flooding with no response seen.",
+      "Water level at Liberty Chowk is dangerously high. Emergency services please respond.",
+      "Traffic at standstill on Canal Road. Speed down to almost zero. Massive flooding incident.",
+      "Ambulance bhi phans gayi Canal Road pe. Serious emergency hai. 1122 ko call karo!",
+      "Liberty underpass is completely submerged, canal is overflowing. Send help now!",
+      "Baarish ne Liberty Chowk ko talab bana diya. Gaariyan pani mein doob rahi hain."
+    ],
+    "weather": {
+      "rainfall_mm": 94,
+      "aqi": 78,
+      "visibility_km": 1.2
+    },
+    "traffic": {
+      "congestion_ratio": 0.94,
+      "avg_speed_kmh": 3
+    },
+    "timestamp": "2026-07-18T08:24:00"
+  }
