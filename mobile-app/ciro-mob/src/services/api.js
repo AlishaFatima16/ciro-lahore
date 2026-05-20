@@ -8,7 +8,7 @@ import { Platform } from 'react-native';
 
 // Use local machine IP if running on physical device,
 // otherwise map localhost (Web) // Physical Device IP (Must be on same WiFi as this PC)
-const ANDROID_API_URL = 'http://192.168.1.8:8000';
+const ANDROID_API_URL = 'http://YOUR_DEPLOYED_BACKEND_URL';
 const WEB_API_URL = 'http://localhost:8000';
 
 export const BASE_URL = Platform.OS === 'android' ? ANDROID_API_URL : WEB_API_URL;

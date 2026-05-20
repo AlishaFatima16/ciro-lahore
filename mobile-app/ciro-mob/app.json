@@ -16,6 +16,13 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.ciro.lahore",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#030508"

@@ -26,7 +26,7 @@ from app.schemas.workflow_schema import (
     WorkflowStatusResponse,
     WorkflowResultResponse,
 )
-from app.agents.orchestrator import run_workflow
+from app.agents.orchestrator import PipelineOrchestrator
 
 router = APIRouter(prefix="/api/v1/workflow", tags=["Workflow"])
 
@@ -46,26 +46,27 @@ def submit_workflow(
 ):
     """
     Accepts multimodal urban telemetry and dispatches the orchestration
-    pipeline (A1 → A2 → A3) as a background task.
-
-    Returns 202 immediately with the workflow_id for status polling.
+    pipeline (A1 → A2 → A3) synchronously.
     """
-    workflow_id = str(uuid.uuid4())
+    # Map the schema payload to the orchestrator dictionary format
+    signals = {
+        "signal": payload.complaint_text,
+        "floodRisk": "pani" in payload.complaint_text.lower() or "flood" in payload.complaint_text.lower() or (payload.weather.rainfall_mm > 50),
+        "smokeDetected": "smog" in payload.complaint_text.lower() or "smoke" in payload.complaint_text.lower() or (payload.weather.aqi > 300),
+        "powerOutage": "bijli" in payload.complaint_text.lower() or "outage" in payload.complaint_text.lower(),
+        "rainfall_mm": payload.weather.rainfall_mm,
+        "aqi": payload.weather.aqi,
+        "visibility_km": payload.weather.visibility_km,
+        "congestion_ratio": payload.traffic.congestion_ratio
+    }
 
-    workflow = Workflow(
-        id=workflow_id,
-        status="PENDING",
-        started_at=datetime.utcnow(),
-    )
-    db.add(workflow)
-    db.commit()
-
-    background_tasks.add_task(run_workflow, workflow_id, payload)
+    orchestrator = PipelineOrchestrator(db)
+    workflow_id = orchestrator.run_pipeline(signals)
 
     return WorkflowAcceptedResponse(
         workflow_id=workflow_id,
-        status="PENDING",
-        message="Workflow accepted. Orchestration running in background.",
+        status="COMPLETED",
+        message="Workflow executed successfully via synchronous orchestration pipeline.",
         submitted_at=datetime.utcnow().isoformat(),
     )
 
