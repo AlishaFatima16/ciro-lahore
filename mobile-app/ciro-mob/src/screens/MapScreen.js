@@ -181,7 +181,9 @@ export default function MapScreen() {
                     
                     <View style={styles.cardRow}>
                         <Text style={styles.metaLabel}>GPS COORDS</Text>
-                        <Text style={styles.metaVal}>{selected.coordinate.latitude.toFixed(5)}° N, {selected.coordinate.longitude.toFixed(5)}° E</Text>
+                        <Text style={styles.metaVal}>
+                            {selected.coordinate?.latitude ? `${selected.coordinate.latitude.toFixed(5)}° N` : 'N/A'}, {selected.coordinate?.longitude ? `${selected.coordinate.longitude.toFixed(5)}° E` : 'N/A'}
+                        </Text>
                     </View>
                     <View style={styles.cardRow}>
                         <Text style={styles.metaLabel}>SEVERITY VECTOR</Text>

@@ -144,20 +144,23 @@ export default function SimulationScreen() {
                         style={styles.terminalLoaderCard} 
                         contentContainerStyle={{ padding: 12, paddingBottom: 24 }}
                     >
-                        {logs.map((log, idx) => (
-                            <View key={idx} style={styles.loaderLogLine}>
-                                <Text style={styles.loaderLogTime}>[{log.timestamp}]</Text>
-                                <Text style={[styles.loaderLogAgent, { color: AGENT_COLORS[log.agent] || '#8E8E93' }]}>{log.agent}:</Text>
-                                <Text style={styles.loaderLogMsg}>{log.message}</Text>
-                                {log.tool && (
-                                    <View style={styles.loaderToolBox}>
-                                        <Text style={styles.loaderToolText}><Text style={{ color: '#FF375F' }}>&gt; Tool Invoke: </Text>{log.tool.name}</Text>
-                                        <Text style={styles.loaderToolText}><Text style={{ color: '#FFD60A' }}>&gt; Input: </Text>{log.tool.input}</Text>
-                                        <Text style={styles.loaderToolText}><Text style={{ color: '#34C759' }}>&gt; Output: </Text>{log.tool.output}</Text>
-                                    </View>
-                                )}
-                            </View>
-                        ))}
+                        {logs.map((log, idx) => {
+                            if (!log) return null;
+                            return (
+                                <View key={idx} style={styles.loaderLogLine}>
+                                    <Text style={styles.loaderLogTime}>[{log.timestamp || '--:--'}]</Text>
+                                    <Text style={[styles.loaderLogAgent, { color: AGENT_COLORS[log.agent] || '#8E8E93' }]}>{log.agent || 'SYSTEM'}:</Text>
+                                    <Text style={styles.loaderLogMsg}>{log.message || ''}</Text>
+                                    {log.tool && (
+                                        <View style={styles.loaderToolBox}>
+                                            <Text style={styles.loaderToolText}><Text style={{ color: '#FF375F' }}>&gt; Tool Invoke: </Text>{log.tool.name}</Text>
+                                            <Text style={styles.loaderToolText}><Text style={{ color: '#FFD60A' }}>&gt; Input: </Text>{log.tool.input}</Text>
+                                            <Text style={styles.loaderToolText}><Text style={{ color: '#34C759' }}>&gt; Output: </Text>{log.tool.output}</Text>
+                                        </View>
+                                    )}
+                                </View>
+                            );
+                        })}
                         <View style={styles.loaderStreamingIndicator}>
                             <ActivityIndicator color="#34C759" size="small" />
                             <Text style={styles.loaderStreamingText}>Executing swarm tools...</Text>
@@ -172,7 +175,7 @@ export default function SimulationScreen() {
                         <View style={styles.presetsRow}>
                             {PRESETS.map((p, idx) => (
                                 <TouchableOpacity key={idx} style={styles.presetCard} onPress={() => handleApplyPreset(p)}>
-                                    <Text style={preset.title === p.title ? styles.presetTitleActive : styles.presetTitle}>{p.title}</Text>
+                                    <Text style={inputText === p.text ? styles.presetTitleActive : styles.presetTitle}>{p.title}</Text>
                                     <Text style={styles.presetDesc} numberOfLines={2}>{p.text}</Text>
                                 </TouchableOpacity>
                             ))}
@@ -367,7 +370,7 @@ export default function SimulationScreen() {
                         {/* ── ACTIONS TAB ── */}
                         {tab === 'ACTIONS' && (
                             <>
-                                <Text style={styles.sectionLabel}>{sim.actions?.length} DECISIONS EXECUTED</Text>
+                                <Text style={styles.sectionLabel}>{sim.actions?.length || 0} DECISIONS EXECUTED</Text>
                                 {sim.actions?.map((action, i) => {
                                     const cfg = ACTION_ICONS[action.type] || { icon: '⚙️', color: '#555' };
                                     return (
@@ -393,7 +396,7 @@ export default function SimulationScreen() {
                         {/* ── TICKETS TAB ── */}
                         {tab === 'TICKETS' && (
                             <>
-                                <Text style={styles.sectionLabel}>{sim.tickets?.length} INCIDENT TICKETS ISSUED</Text>
+                                <Text style={styles.sectionLabel}>{sim.tickets?.length || 0} INCIDENT TICKETS ISSUED</Text>
                                 {sim.tickets?.map((t, i) => (
                                     <AnimatedCard key={i} delay={i * 40} style={{ marginBottom: 12 }}>
                                         <View style={styles.ticketCard}>

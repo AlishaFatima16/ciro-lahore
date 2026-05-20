@@ -53,13 +53,13 @@ export default function DashboardScreen() {
         );
     }
 
-    const payload = getIngestPayload();
-    const weather = getWeatherData();
-    const traffic = getTrafficData();
-    const social = getSocialSignals();
+    const payload = getIngestPayload() || {};
+    const weather = getWeatherData() || {};
+    const traffic = getTrafficData() || {};
+    const social = getSocialSignals() || [];
 
     const isFlood = scenario === 'FLOOD';
-    const severity = isFlood ? 'CRITICAL' : 'CRITICAL';
+    const severity = 'CRITICAL';
     const confidence = isFlood ? 94 : 96;
     const location = isFlood ? 'Liberty Chowk / Gulberg, Lahore' : 'DHA / Ferozpur Road, Lahore';
     const affectedArea = isFlood ? '3.5 km radius' : '10 km radius';
@@ -176,7 +176,7 @@ export default function DashboardScreen() {
                             </Text>
                         </View>
                         <Text style={styles.roadListHeader}>🚧 Affected Arterials & Incidents</Text>
-                        {traffic.zones?.flatMap(z => z.roads || [])?.map((road, i) => (
+                        {(traffic?.zones || [])?.flatMap(z => z.roads || [])?.map((road, i) => (
                             <View key={i} style={styles.roadRow}>
                                 <View style={[styles.roadDot, { backgroundColor: road.status === 'CLOSED' || road.status === 'SEVERELY_CONGESTED' ? '#FF3B30' : '#EF9F27' }]} />
                                 <View style={{ flex: 1 }}>

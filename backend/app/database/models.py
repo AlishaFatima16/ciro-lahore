@@ -1,140 +1,101 @@
-import uuid
-from datetime import datetime
-from sqlalchemy import String, Float, Integer, DateTime, Text, Boolean, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Column, String, Integer, Float, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from app.database.connection import Base
+from datetime import datetime
+import uuid
 
-
-def new_uuid() -> str:
+def generate_uuid():
     return str(uuid.uuid4())
 
-
-# -----------------------------------------------------------------------
-# Workflow — Root entity for every orchestration pipeline execution
-# -----------------------------------------------------------------------
 class Workflow(Base):
     __tablename__ = "workflows"
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    status = Column(String(20), nullable=False, default="PENDING")
+    halt_reason = Column(String(50), nullable=True)
+    started_at = Column(DateTime, nullable=False, default=datetime.utcnow)
+    completed_at = Column(DateTime, nullable=True)
+    request_hash = Column(String(64), nullable=True)
+    retry_count = Column(Integer, nullable=False, default=0)
+    last_retry_at = Column(DateTime, nullable=True)
+    max_retry_limit = Column(Integer, nullable=False, default=3)
 
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_uuid)
-    status: Mapped[str] = mapped_column(String(20), nullable=False, default="PENDING")
-    halt_reason: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    started_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-    completed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
-
-    # Idempotency + Retry support
-    request_hash: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
-    retry_count: Mapped[int] = mapped_column(Integer, default=0)
-    last_retry_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
-    max_retry_limit: Mapped[int] = mapped_column(Integer, default=3)
-
-    # Relationships
-    signals: Mapped[list["Signal"]] = relationship("Signal", back_populates="workflow", cascade="all, delete")
-    crises: Mapped[list["Crisis"]] = relationship("Crisis", back_populates="workflow", cascade="all, delete")
-    response_plans: Mapped[list["ResponsePlan"]] = relationship("ResponsePlan", back_populates="workflow", cascade="all, delete")
-    executions: Mapped[list["Execution"]] = relationship("Execution", back_populates="workflow", cascade="all, delete")
-    logs: Mapped[list["Log"]] = relationship("Log", back_populates="workflow", cascade="all, delete")
+    crises = relationship("Crisis", back_populates="workflow")
+    executions = relationship("Execution", back_populates="workflow")
+    logs = relationship("Log", back_populates="workflow")
+    response_plans = relationship("ResponsePlan", back_populates="workflow")
+    signals = relationship("Signal", back_populates="workflow")
 
 
-# -----------------------------------------------------------------------
-# Signal — Raw + normalized telemetry ingested for a workflow
-# -----------------------------------------------------------------------
-class Signal(Base):
-    __tablename__ = "signals"
-
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_uuid)
-    workflow_id: Mapped[str] = mapped_column(String(36), ForeignKey("workflows.id"), nullable=False)
-
-    # Raw JSON storage
-    social_signals: Mapped[str | None] = mapped_column(Text, nullable=True)
-    weather_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    traffic_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-
-    # Normalized analytics columns
-    rainfall_mm: Mapped[float | None] = mapped_column(Float, nullable=True)
-    aqi: Mapped[float | None] = mapped_column(Float, nullable=True)
-    visibility_km: Mapped[float | None] = mapped_column(Float, nullable=True)
-    congestion_ratio: Mapped[float | None] = mapped_column(Float, nullable=True)
-    avg_speed_kmh: Mapped[float | None] = mapped_column(Float, nullable=True)
-
-    workflow: Mapped["Workflow"] = relationship("Workflow", back_populates="signals")
-
-
-# -----------------------------------------------------------------------
-# Crisis — Agent 1 detection output
-# -----------------------------------------------------------------------
-class Crisis(Base):
-    __tablename__ = "crises"
-
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_uuid)
-    workflow_id: Mapped[str] = mapped_column(String(36), ForeignKey("workflows.id"), nullable=False)
-    crisis_type: Mapped[str] = mapped_column(String(50), nullable=False)
-    severity: Mapped[str] = mapped_column(String(20), nullable=False)
-    confidence: Mapped[float] = mapped_column(Float, nullable=False)
-    affected_zone: Mapped[str | None] = mapped_column(String(10), nullable=True)
-    affected_roads: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON list stored as text
-
-    workflow: Mapped["Workflow"] = relationship("Workflow", back_populates="crises")
-
-
-# -----------------------------------------------------------------------
-# ResponsePlan — Agent 2 generated action items
-# -----------------------------------------------------------------------
-class ResponsePlan(Base):
-    __tablename__ = "response_plans"
-
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_uuid)
-    workflow_id: Mapped[str] = mapped_column(String(36), ForeignKey("workflows.id"), nullable=False)
-    action: Mapped[str] = mapped_column(Text, nullable=False)
-    priority: Mapped[int] = mapped_column(Integer, nullable=False)
-    department: Mapped[str] = mapped_column(String(100), nullable=False)
-
-    workflow: Mapped["Workflow"] = relationship("Workflow", back_populates="response_plans")
-
-
-# -----------------------------------------------------------------------
-# Execution — Agent 3 simulated execution records
-# -----------------------------------------------------------------------
-class Execution(Base):
-    __tablename__ = "executions"
-
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_uuid)
-    workflow_id: Mapped[str] = mapped_column(String(36), ForeignKey("workflows.id"), nullable=False)
-    ticket_id: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    execution_type: Mapped[str] = mapped_column(String(50), nullable=False)
-    status: Mapped[str] = mapped_column(String(20), nullable=False, default="COMPLETED")
-    recipients_count: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    executed_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
-
-    workflow: Mapped["Workflow"] = relationship("Workflow", back_populates="executions")
-
-
-# -----------------------------------------------------------------------
-# ZoneStatus — Persistent operational state for Lahore zones Z01–Z12
-# -----------------------------------------------------------------------
 class ZoneStatus(Base):
     __tablename__ = "zone_status"
+    zone_id = Column(String(10), primary_key=True)
+    status = Column(String(20), nullable=False, default="CLEAR")
+    active_crisis = Column(String(50), nullable=True)
+    updated_at = Column(DateTime, nullable=False, default=datetime.utcnow)
 
-    zone_id: Mapped[str] = mapped_column(String(10), primary_key=True)
-    status: Mapped[str] = mapped_column(String(20), nullable=False, default="CLEAR")
-    active_crisis: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Crisis(Base):
+    __tablename__ = "crises"
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    workflow_id = Column(String(36), ForeignKey("workflows.id"), nullable=False)
+    crisis_type = Column(String(50), nullable=False)
+    severity = Column(String(20), nullable=False)
+    confidence = Column(Float, nullable=False)
+    affected_zone = Column(String(10), nullable=True)
+    affected_roads = Column(Text, nullable=True)
+
+    workflow = relationship("Workflow", back_populates="crises")
 
 
-# -----------------------------------------------------------------------
-# Log — Structured agent and orchestrator trace records
-# -----------------------------------------------------------------------
+class Execution(Base):
+    __tablename__ = "executions"
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    workflow_id = Column(String(36), ForeignKey("workflows.id"), nullable=False)
+    ticket_id = Column(String(50), nullable=True)
+    execution_type = Column(String(50), nullable=False)
+    status = Column(String(20), nullable=False)
+    recipients_count = Column(Integer, nullable=True)
+    executed_at = Column(DateTime, nullable=False, default=datetime.utcnow)
+
+    workflow = relationship("Workflow", back_populates="executions")
+
+
 class Log(Base):
     __tablename__ = "logs"
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    workflow_id = Column(String(36), ForeignKey("workflows.id"), nullable=True)
+    agent_name = Column(String(60), nullable=False)
+    message = Column(Text, nullable=False)
+    timestamp = Column(DateTime, nullable=False, default=datetime.utcnow)
+    trace_id = Column(String(36), nullable=True)
+    execution_ms = Column(Integer, nullable=True)
+    parent_agent = Column(String(60), nullable=True)
 
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_uuid)
-    workflow_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("workflows.id"), nullable=True)
-    agent_name: Mapped[str] = mapped_column(String(60), nullable=False)
-    message: Mapped[str] = mapped_column(Text, nullable=False)
-    timestamp: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    workflow = relationship("Workflow", back_populates="logs")
 
-    # Observability extensions
-    trace_id: Mapped[str | None] = mapped_column(String(36), nullable=True)
-    execution_ms: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    parent_agent: Mapped[str | None] = mapped_column(String(60), nullable=True)
 
-    workflow: Mapped["Workflow"] = relationship("Workflow", back_populates="logs")
+class ResponsePlan(Base):
+    __tablename__ = "response_plans"
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    workflow_id = Column(String(36), ForeignKey("workflows.id"), nullable=False)
+    action = Column(Text, nullable=False)
+    priority = Column(Integer, nullable=False)
+    department = Column(String(100), nullable=False)
+
+    workflow = relationship("Workflow", back_populates="response_plans")
+
+
+class Signal(Base):
+    __tablename__ = "signals"
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    workflow_id = Column(String(36), ForeignKey("workflows.id"), nullable=False)
+    social_signals = Column(Text, nullable=True)
+    weather_json = Column(Text, nullable=True)
+    traffic_json = Column(Text, nullable=True)
+    rainfall_mm = Column(Float, nullable=True)
+    aqi = Column(Float, nullable=True)
+    visibility_km = Column(Float, nullable=True)
+    congestion_ratio = Column(Float, nullable=True)
+    avg_speed_kmh = Column(Float, nullable=True)
+
+    workflow = relationship("Workflow", back_populates="signals")

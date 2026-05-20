@@ -134,7 +134,7 @@ function LogEntry({ log }) {
         <View style={[styles.logCard, { borderLeftColor: cfg.color, backgroundColor: cfg.bg, borderColor: cfg.border }]}>
             <View style={styles.logHeader}>
                 <View style={styles.agentInfo}>
-                    <Text style={[styles.agentText, { color: agentColor }]}>● {log.agent.toUpperCase()}</Text>
+                    <Text style={[styles.agentText, { color: agentColor }]}>● {(log.agent || 'SYSTEM').toUpperCase()}</Text>
                 </View>
                 <Text style={styles.logTime}>{log.timestamp}</Text>
             </View>
@@ -185,7 +185,7 @@ export default function LogsScreen() {
     });
 
     const isLive = isStreamingSim || backendLoading;
-    const activeLogs = isStreamingSim ? streamLogs : backendLogs;
+    const activeLogs = (isStreamingSim ? streamLogs : backendLogs).filter(Boolean);
 
     // Filter implementation
     const FILTERS = ['ALL', 'critical', 'warning', 'success', 'info', 'system'];
@@ -445,7 +445,11 @@ const styles = StyleSheet.create({
     },
     activeAgentBorder: {
         borderColor: '#00d2ff',
-        boxShadow: '0 0 8px rgba(0, 210, 255, 0.2)'
+        shadowColor: '#00d2ff',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.2,
+        shadowRadius: 8,
+        elevation: 3,
     },
     agentCardHeader: {
         flexDirection: 'row',

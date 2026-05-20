@@ -77,7 +77,6 @@ export default function InteractiveMap({
                     longitudeDelta: 0.05,
                 }}
                 customMapStyle={darkMapStyle}
-                provider="google"
             >
                 {/* Draw emergency markers with localized Urdu titles */}
                 {emergencyMarkers?.map(marker => {

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 
 // Import local JSON datasets as local fallbacks
 import floodPayload from '../actual-mock-data/ingest_payload_flood.json';
@@ -27,6 +27,7 @@ export const CrisisProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [customSignal, setCustomSignal] = useState('');
     const [apiError, setApiError] = useState(null); // Displays soft badge if API is offline
+    const activeIntervalRef = useRef(null);
     
     const [toggles, setToggles] = useState({
         floodRisk: true,
@@ -206,6 +207,10 @@ export const CrisisProvider = ({ children }) => {
     }
 
     const runSimulatedAnalysis = async (text, customToggles) => {
+        if (activeIntervalRef.current) {
+            clearInterval(activeIntervalRef.current);
+            activeIntervalRef.current = null;
+        }
         setLoading(true);
         setCustomSignal(text);
         setToggles(customToggles);
@@ -234,7 +239,10 @@ export const CrisisProvider = ({ children }) => {
                 powerOutage: customToggles.powerOutage
             });
 
-            const backendScenario = ingestRes.data?.matched_scenario || matchedScenario;
+            let backendScenario = ingestRes.data?.matched_scenario || matchedScenario;
+            if (backendScenario !== 'FLOOD' && backendScenario !== 'SMOG') {
+                backendScenario = 'FLOOD';
+            }
             
             const [logsRes, simRes, outcomeRes] = await Promise.all([
                 getLogs().catch(e => { console.warn("getLogs API failed:", e); return null; }),
@@ -247,14 +255,23 @@ export const CrisisProvider = ({ children }) => {
             // Stream the traces fetched from the backend live!
             setLogs([]);
             let index = 0;
-            const interval = setInterval(() => {
+            activeIntervalRef.current = setInterval(() => {
                 if (index < remoteLogs.length) {
                     setLogs(prev => [...prev, remoteLogs[index]]);
                     index++;
                 } else {
-                    clearInterval(interval);
+                    if (activeIntervalRef.current) {
+                        clearInterval(activeIntervalRef.current);
+                        activeIntervalRef.current = null;
+                    }
                     setScenario(backendScenario);
-                    setOutcomeState(outcomeRes?.data || MOCK_OUTCOMES[backendScenario]);
+                    
+                    const remoteOutcome = outcomeRes?.data;
+                    if (remoteOutcome && remoteOutcome.wasa && remoteOutcome.rescue && remoteOutcome.sms) {
+                        setOutcomeState(remoteOutcome);
+                    } else {
+                        setOutcomeState(MOCK_OUTCOMES[backendScenario]);
+                    }
                     
                     if (simRes?.data) {
                         setSimulationState(simRes.data);
@@ -272,12 +289,15 @@ export const CrisisProvider = ({ children }) => {
             // Beautiful Fallback Stream
             setLogs([]);
             let index = 0;
-            const interval = setInterval(() => {
+            activeIntervalRef.current = setInterval(() => {
                 if (index < fallbackTraces.length) {
                     setLogs(prev => [...prev, fallbackTraces[index]]);
                     index++;
                 } else {
-                    clearInterval(interval);
+                    if (activeIntervalRef.current) {
+                        clearInterval(activeIntervalRef.current);
+                        activeIntervalRef.current = null;
+                    }
                     setScenario(matchedScenario);
                     setOutcomeState(MOCK_OUTCOMES[matchedScenario]);
                     setSimulationState(getInitialSimulation(matchedScenario));
@@ -286,6 +306,14 @@ export const CrisisProvider = ({ children }) => {
             }, 180);
         }
     };
+
+    useEffect(() => {
+        return () => {
+            if (activeIntervalRef.current) {
+                clearInterval(activeIntervalRef.current);
+            }
+        };
+    }, []);
 
     const getIngestPayload = () => scenario === 'FLOOD' ? floodPayload : smogPayload;
     const getSocialSignals = () => scenario === 'FLOOD' ? floodSocial : smogSocial;

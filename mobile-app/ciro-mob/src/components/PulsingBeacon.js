@@ -49,6 +49,9 @@ export default function PulsingBeacon({ color = '#FF3B30', size = 10, interval =
                         width: size,
                         height: size,
                         borderRadius: size / 2,
+                        shadowColor: color,
+                        shadowRadius: size / 2,
+                        elevation: size / 2,
                     }
                 ]}
             />
