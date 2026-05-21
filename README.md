@@ -8,6 +8,18 @@ Once an anomaly is detected, the Antigravity Swarm autonomously analyzes traffic
 
 ---
 
+## 🌐 Live Production Deployments
+
+For final judging and immediate testing, CIRO is fully deployed and production-ready:
+
+* **🚀 Production Cloud Backend (GCP Cloud Run):** [https://ciro-backend-636075247628.us-central1.run.app](https://ciro-backend-636075247628.us-central1.run.app)
+  * *Containerized via Docker and deployed securely with full auto-scaling support.*
+* **💾 Persistent Database (Neon PostgreSQL Cloud):** Linked to the GCP backend to ensure all swarm agent logs, active simulations, and coordinate maps survive scale-to-zero boots.
+* **📱 Standalone Mobile APK (Android Preview Build):** **[Download Android APK (sSRtsUXiHNQ8MB1abH9wRR.apk)](https://expo.dev/artifacts/eas/sSRtsUXiHNQ8MB1abH9wRR.apk)**
+  * *EAS-compiled standalone preview build pre-configured to talk directly to our production Cloud Run endpoints.*
+
+---
+
 ## 🌟 Key Features
 
 * **🧠 Autonomous AI Agent Swarm:** Built on a multi-agent framework where specialized AI agents (Signal Detection, Weather Correlation, Traffic Analysis, Response Planning, and Emergency Dispatch) communicate and solve crises collaboratively.
