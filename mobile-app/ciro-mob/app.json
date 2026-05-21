@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ciro-mob",
+    "name": "CIRO Lahore",
     "slug": "ciro-mob",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -31,6 +31,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c4b73cc7-fe78-4c1a-a216-10606b031771"
+      }
     }
   }
 }
