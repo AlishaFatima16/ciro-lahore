@@ -1,4 +1,4 @@
-# ⚡ CIRO - Crisis Intelligence & Response Orchestrator (Lahore)
+#  CIRO - Crisis Intelligence & Response Orchestrator (Lahore)
 
 **An autonomous AI Agent Swarm that detects, analyzes, and mitigates urban crises in real-time.**
 
@@ -20,7 +20,7 @@ For final judging and immediate testing, CIRO is fully deployed and production-r
 
 ---
 
-## 🌟 Key Features
+##  Key Features
 
 * **🧠 Autonomous AI Agent Swarm:** Built on a multi-agent framework where specialized AI agents (Signal Detection, Weather Correlation, Traffic Analysis, Response Planning, and Emergency Dispatch) communicate and solve crises collaboratively.
 * **📱 Tactical Command Center:** A premium, cyberpunk-inspired React Native mobile dashboard for municipal commanders to monitor live telemetry, agent logs, and crisis metrics.
@@ -48,7 +48,7 @@ CIRO is separated into a high-performance Python Swarm Backend and a reactive Mo
 
 ---
 
-## 🚀 Running CIRO Locally
+##  Running CIRO Locally
 
 To run the full stack locally on your machine, you will need two terminal windows.
 
